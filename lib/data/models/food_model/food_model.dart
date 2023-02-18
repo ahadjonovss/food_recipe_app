@@ -24,15 +24,15 @@ class FoodModel {
 class Hint {
   Hint({
     required this.food,
-    required this.measures,
+    // required this.measures,
   });
 
   Food food;
-  List<Measure> measures;
+  // List<Measure> measures;
 
   factory Hint.fromJson(Map<String, dynamic> json) => Hint(
-    food: Food.fromJson(json["food"]),
-    measures: List<Measure>.from(json["measures"].map((x) => Measure.fromJson(x))),
+    food: Food.fromJson(json["food"]??{}),
+    // measures: List<Measure>.from(json["measures"]??[].map((x) => Measure.fromJson(x))),
   );
 
 }
@@ -57,13 +57,13 @@ class Food {
   String image;
 
   factory Food.fromJson(Map<String, dynamic> json) => Food(
-    foodId: json["foodId"],
-    label: json["label"],
-    knownAs: json["knownAs"],
-    nutrients: Nutrients.fromJson(json["nutrients"]),
+    foodId: json["foodId"]??'',
+    label: json["label"]??'',
+    knownAs: json["knownAs"]??'',
+    nutrients: Nutrients.fromJson(json["nutrients"]??{}),
     category: categoryValues.map[json["category"]]!,
     categoryLabel: categoryLabelValues.map[json["categoryLabel"]]!,
-    image: json["image"],
+    image: json["image"]??'',
   );
 
 }
@@ -110,38 +110,20 @@ class Measure {
     required this.uri,
     required this.label,
     required this.weight,
-    required this.qualified,
   });
 
   String uri;
   String label;
   num weight;
-  List<Qualified> qualified;
 
   factory Measure.fromJson(Map<String, dynamic> json) => Measure(
-    uri: json["uri"],
-    label: json["label"],
+    uri: json["uri"]??'',
+    label: json["label"]??'',
     weight: json["weight"]?.toDouble(),
-    qualified: List<Qualified>.from(json["qualified"].map((x) => Qualified.fromJson(x))),
   );
 
 }
 
-class Qualified {
-  Qualified({
-    required this.qualifiers,
-    required this.weight,
-  });
-
-  List<Qualifier> qualifiers;
-  num weight;
-
-  factory Qualified.fromJson(Map<String, dynamic> json) => Qualified(
-    qualifiers: List<Qualifier>.from(json["qualifiers"].map((x) => Qualifier.fromJson(x))),
-    weight: json["weight"],
-  );
-
-}
 
 class Qualifier {
   Qualifier({
@@ -153,8 +135,8 @@ class Qualifier {
   String label;
 
   factory Qualifier.fromJson(Map<String, dynamic> json) => Qualifier(
-    uri: json["uri"],
-    label: json["label"],
+    uri: json["uri"]??'',
+    label: json["label"]??'',
   );
 
 }
@@ -167,7 +149,7 @@ class Links {
   Next next;
 
   factory Links.fromJson(Map<String, dynamic> json) => Links(
-    next: Next.fromJson(json["next"]),
+    next: Next.fromJson(json["next"]??{}),
   );
 
 }
