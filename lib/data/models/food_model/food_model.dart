@@ -18,12 +18,7 @@ class FoodModel {
     links: Links.fromJson(json["_links"]),
   );
 
-  Map<String, dynamic> toJson() => {
-    "text": text,
-    "parsed": List<dynamic>.from(parsed.map((x) => x)),
-    "hints": List<dynamic>.from(hints.map((x) => x.toJson())),
-    "_links": links.toJson(),
-  };
+
 }
 
 class Hint {
@@ -40,10 +35,6 @@ class Hint {
     measures: List<Measure>.from(json["measures"].map((x) => Measure.fromJson(x))),
   );
 
-  Map<String, dynamic> toJson() => {
-    "food": food.toJson(),
-    "measures": List<dynamic>.from(measures.map((x) => x.toJson())),
-  };
 }
 
 class Food {
@@ -75,15 +66,6 @@ class Food {
     image: json["image"],
   );
 
-  Map<String, dynamic> toJson() => {
-    "foodId": foodId,
-    "label": label,
-    "knownAs": knownAs,
-    "nutrients": nutrients.toJson(),
-    "category": categoryValues.reverse[category],
-    "categoryLabel": categoryLabelValues.reverse[categoryLabel],
-    "image": image,
-  };
 }
 
 enum Category { GENERIC_FOODS }
@@ -107,11 +89,11 @@ class Nutrients {
     required this.fibtg,
   });
 
-  int enercKcal;
-  double procnt;
-  double fat;
-  double chocdf;
-  double fibtg;
+  num enercKcal;
+  num procnt;
+  num fat;
+  num chocdf;
+  num fibtg;
 
   factory Nutrients.fromJson(Map<String, dynamic> json) => Nutrients(
     enercKcal: json["ENERC_KCAL"],
@@ -121,13 +103,6 @@ class Nutrients {
     fibtg: json["FIBTG"]?.toDouble(),
   );
 
-  Map<String, dynamic> toJson() => {
-    "ENERC_KCAL": enercKcal,
-    "PROCNT": procnt,
-    "FAT": fat,
-    "CHOCDF": chocdf,
-    "FIBTG": fibtg,
-  };
 }
 
 class Measure {
@@ -140,7 +115,7 @@ class Measure {
 
   String uri;
   String label;
-  double weight;
+  num weight;
   List<Qualified> qualified;
 
   factory Measure.fromJson(Map<String, dynamic> json) => Measure(
@@ -150,12 +125,6 @@ class Measure {
     qualified: List<Qualified>.from(json["qualified"].map((x) => Qualified.fromJson(x))),
   );
 
-  Map<String, dynamic> toJson() => {
-    "uri": uri,
-    "label": label,
-    "weight": weight,
-    "qualified": List<dynamic>.from(qualified.map((x) => x.toJson())),
-  };
 }
 
 class Qualified {
@@ -165,17 +134,13 @@ class Qualified {
   });
 
   List<Qualifier> qualifiers;
-  int weight;
+  num weight;
 
   factory Qualified.fromJson(Map<String, dynamic> json) => Qualified(
     qualifiers: List<Qualifier>.from(json["qualifiers"].map((x) => Qualifier.fromJson(x))),
     weight: json["weight"],
   );
 
-  Map<String, dynamic> toJson() => {
-    "qualifiers": List<dynamic>.from(qualifiers.map((x) => x.toJson())),
-    "weight": weight,
-  };
 }
 
 class Qualifier {
@@ -192,10 +157,6 @@ class Qualifier {
     label: json["label"],
   );
 
-  Map<String, dynamic> toJson() => {
-    "uri": uri,
-    "label": label,
-  };
 }
 
 class Links {
@@ -209,9 +170,6 @@ class Links {
     next: Next.fromJson(json["next"]),
   );
 
-  Map<String, dynamic> toJson() => {
-    "next": next.toJson(),
-  };
 }
 
 class Next {
@@ -228,10 +186,6 @@ class Next {
     href: json["href"],
   );
 
-  Map<String, dynamic> toJson() => {
-    "title": title,
-    "href": href,
-  };
 }
 
 class EnumValues<T> {
