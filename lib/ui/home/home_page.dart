@@ -52,9 +52,11 @@ class HomePage extends StatelessWidget {
                   var currentBloc = context.read<HomePageBloc>();
                 if(state is GettingMealsInSuccessState){
                   return SizedBox(
-                    height: 800,
+                    height: 900,
                     child: GridView.builder(
+                      physics: BouncingScrollPhysics(),
                       shrinkWrap: true,
+                      itemCount: state.foods.hints.length,
                       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 120,
                           childAspectRatio: 1.1,

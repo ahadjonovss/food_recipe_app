@@ -52,8 +52,8 @@ class Food {
   String label;
   String knownAs;
   Nutrients nutrients;
-  Category category;
-  CategoryLabel categoryLabel;
+  String category;
+  String categoryLabel;
   String image;
 
   factory Food.fromJson(Map<String, dynamic> json) => Food(
@@ -61,24 +61,12 @@ class Food {
     label: json["label"]??'',
     knownAs: json["knownAs"]??'',
     nutrients: Nutrients.fromJson(json["nutrients"]??{}),
-    category: categoryValues.map[json["category"]]!,
-    categoryLabel: categoryLabelValues.map[json["categoryLabel"]]!,
-    image: json["image"]??'',
+    category: json["category"]??'',
+    categoryLabel:json["categoryLabel"]??'',
+    image: json["image"]??'https://cdn.pngsumo.com/food-png-illustration-free-food-illustrationpng-transparent-cartoon-food-png-650_650.png',
   );
 
 }
-
-enum Category { GENERIC_FOODS }
-
-final categoryValues = EnumValues({
-  "Generic foods": Category.GENERIC_FOODS
-});
-
-enum CategoryLabel { FOOD }
-
-final categoryLabelValues = EnumValues({
-  "food": CategoryLabel.FOOD
-});
 
 class Nutrients {
   Nutrients({

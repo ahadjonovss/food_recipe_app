@@ -10,15 +10,15 @@ class ApiService extends ApiClient {
   Future<MyResponse> getDefaultMeals() async {
     MyResponse myResponse = MyResponse();
     try {
-      print("Keldi");
       Response response = await dio.get(
-          "https://api.edamam.com/api/food-database/v2/parser?app_id=62378f1f&app_key=5b15f03cad54329a05915d514a1aaed9&nutrition-type=cooking&health=no-oil-added&category=generic-foods");
+          dio.options.baseUrl);
       if (response.statusCode == 200) {
         print("hammasi yaxshi");
         myResponse.data = FoodModel.fromJson(response.data);
       }
     } catch (e) {
       myResponse.error = e.toString();
+      print(e);
     }
     return myResponse;
   }
