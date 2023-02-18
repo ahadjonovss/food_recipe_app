@@ -9,11 +9,13 @@ class ApiClient{
   }
 
   late Dio dio;
+  String apiKey = "5b15f03cad54329a05915d514a1aaed9";
+  String appId = "62378f1f";
 
   _init(){
     dio=Dio(
         BaseOptions(
-            baseUrl: "https://api.edamam.com/api/food-database",
+            baseUrl: "https://api.edamam.com/api/food-database/v2/parser?app_id=$appId&app_key=$apiKey",
             connectTimeout: 25000,
             receiveTimeout: 20000
         )
