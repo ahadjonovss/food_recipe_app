@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => HomePageBloc(),)
       ],
-        child: HomePage());
+        child: MyApp());
   }
 }
 
