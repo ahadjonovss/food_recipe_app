@@ -20,7 +20,7 @@ class FoodItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: Colors.blue),
       child: Text(
-        "Random ovqat",
+        food.knownAs,
         maxLines: 2,
         style: GoogleFonts.lato(
             color: Colors.white, fontWeight: FontWeight.w500),
