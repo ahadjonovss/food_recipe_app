@@ -1,6 +1,8 @@
+import 'package:food_recipe_app/data/models/food_model/food_model.dart';
+
 class MyResponse{
   String error;
-  dynamic data;
+  FoodModel? data;
 
   MyResponse({this.data,this.error=''});
 }

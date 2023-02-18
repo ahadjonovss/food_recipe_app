@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:food_recipe_app/data/models/api_model/food_category.dart';
 import 'package:food_recipe_app/data/models/api_model/food_health_type_model.dart';
+import 'package:food_recipe_app/data/models/food_model/food_model.dart';
 import 'package:food_recipe_app/data/models/my_response.dart';
 import 'package:food_recipe_app/service/api_service/api_client.dart';
 
@@ -14,7 +15,7 @@ class ApiService extends ApiClient {
           "${dio.options.baseUrl}&nutrition-type=cooking&health=${FoodHealth.alcoholFree}&category=${FoodCategory.genericFoods}");
       if (response.statusCode == 200) {
         print("hammasi yaxshi");
-        //myResponse.data = UserModel.fromJson(response.data);
+        myResponse.data = FoodModel.fromJson(response.data);
       }
     } catch (e) {
       myResponse.error = e.toString();
