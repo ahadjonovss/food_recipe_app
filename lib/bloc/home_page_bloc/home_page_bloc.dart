@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:food_recipe_app/data/models/food_model/food_model.dart';
 import 'package:food_recipe_app/data/models/my_response.dart';
@@ -15,12 +13,15 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     on<GetDefaultMeals>(getDefaultMeals);
   }
 
+  List<Hint> meals=[];
 
-  getDefaultMeals(event, emit) async {
+
+  getDefaultMeals(GetDefaultMeals event, emit) async {
     emit(GettingMealsInProgressState());
     MyResponse myResponse = await getIt<ApiService>().getDefaultMeals();
     if(myResponse.error.isEmpty){
-      emit(GettingMealsInSuccessState(foods: myResponse.data!));
+      meals.addAll(myResponse.data!.hints);
+      emit(GettingMealsInSuccessState(foods: meals));
     }else{
       emit(GettingMealsInFailuryState(status: myResponse.error));
     }

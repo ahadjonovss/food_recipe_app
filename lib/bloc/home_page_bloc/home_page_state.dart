@@ -12,7 +12,7 @@ class HomePageInitial extends HomePageState {}
 class GettingMealsInProgressState extends HomePageState{}
 
 class GettingMealsInSuccessState extends HomePageState{
-  FoodModel foods;
+  List<Hint> foods;
 
   GettingMealsInSuccessState({required this.foods});
 }

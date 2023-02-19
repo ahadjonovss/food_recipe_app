@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipe_app/bloc/home_page_bloc/home_page_bloc.dart';
 import 'package:food_recipe_app/ui/home/home_page.dart';
+import 'package:food_recipe_app/utils/get_it/get_it.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => HomePageBloc(),)
+        BlocProvider(create: (context) => getIt<HomePageBloc>(),)
       ],
         child: MyApp());
   }

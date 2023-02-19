@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_app/data/models/food_model/food_model.dart';
+import 'package:food_recipe_app/ui/food_info/food_info_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FoodItem extends StatelessWidget {
@@ -8,22 +9,28 @@ class FoodItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.bottomCenter,
-      height: 120,
-      width: 120,
-      decoration: BoxDecoration(
-          image:  DecorationImage(
-              image: NetworkImage(
-                  food.image),
-              fit: BoxFit.cover),
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.blue),
-      child: Text(
-        food.knownAs,
-        maxLines: 2,
-        style: GoogleFonts.lato(
-            color: Colors.white, fontWeight: FontWeight.w500),
+    return InkWell(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => FoodInfoPage(food: food),));
+
+      },
+      child: Container(
+        alignment: Alignment.bottomCenter,
+        height: 120,
+        width: 120,
+        decoration: BoxDecoration(
+            image:  DecorationImage(
+                image: NetworkImage(
+                    food.image),
+                fit: BoxFit.cover),
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.blue),
+        child: Text(
+          food.knownAs,
+          maxLines: 2,
+          style: GoogleFonts.lato(
+              color: Colors.white, fontWeight: FontWeight.w500),
+        ),
       ),
     );
   }

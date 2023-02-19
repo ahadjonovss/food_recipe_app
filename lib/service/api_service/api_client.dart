@@ -15,7 +15,7 @@ class ApiClient{
   _init(){
     dio=Dio(
         BaseOptions(
-            baseUrl: "https://api.edamam.com/api/food-database/v2/parser?app_id=62378f1f&app_key=5b15f03cad54329a05915d514a1aaed9&nutrition-type=cooking&health=gluten-free&category=fast-foods",
+            baseUrl: "https://api.edamam.com/api/food-database/v2/parser?session=80&app_id=62378f1f&app_key=5b15f03cad54329a05915d514a1aaed9",
             connectTimeout: 25000,
             receiveTimeout: 20000
         )

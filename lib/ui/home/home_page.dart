@@ -1,11 +1,26 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipe_app/bloc/home_page_bloc/home_page_bloc.dart';
+import 'package:food_recipe_app/ui/food_info/food_info_page.dart';
 import 'package:food_recipe_app/ui/home/widgets/food_item.dart';
+import 'package:food_recipe_app/utils/get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+   HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  ScrollController scrollController = ScrollController();
+
+   void initState() {
+     scrollController.addListener(_scrollListener);
+     super.initState();
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +69,16 @@ class HomePage extends StatelessWidget {
                   return SizedBox(
                     height: 900,
                     child: GridView.builder(
-                      physics: BouncingScrollPhysics(),
+                      controller: scrollController,
+                      physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: state.foods.hints.length,
+                      itemCount: state.foods.length,
                       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 120,
                           childAspectRatio: 1.1,
                           crossAxisSpacing: 20,
                           mainAxisSpacing: 20),
-                      itemBuilder: (context, index) => FoodItem(food: state.foods.hints[index].food),
+                      itemBuilder: (context, index) => FoodItem(food: state.foods[index].food),
                     ),
                   );
                 }
@@ -82,4 +98,11 @@ class HomePage extends StatelessWidget {
       )
     );
   }
+
+   void _scrollListener(){
+     if(scrollController.position.pixels == scrollController.position.maxScrollExtent){
+       getIt<HomePageBloc>().add(GetDefaultMeals());
+       print("New added");
+     }
+   }
 }
