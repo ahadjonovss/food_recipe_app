@@ -32,6 +32,18 @@ class FoodItem extends StatelessWidget {
             food.knownAs,
             maxLines: 2,
             style: GoogleFonts.lato(
+                shadows: <Shadow>[
+                  const Shadow(
+                    offset: Offset(10.0, 10.0),
+                    blurRadius: 3.0,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                  const Shadow(
+                    offset: Offset(10.0, 10.0),
+                    blurRadius: 8.0,
+                    color: Color.fromARGB(125, 0, 0, 255),
+                  ),
+                ],
                 color: Colors.white, fontWeight: FontWeight.w500),
           ),
         ),

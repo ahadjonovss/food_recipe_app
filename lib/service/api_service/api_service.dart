@@ -50,4 +50,16 @@ class ApiService extends ApiClient {
     }
 
   }
+
+  Future<MyResponse> getSelectedFoods(String url) async {
+    MyResponse myResponse = MyResponse();
+    Response response = await dio.get(url);
+    if(response.statusCode==200){
+      myResponse.data = FoodModel.fromJson(response.data);
+    }
+    return myResponse;
+
+  }
+
+
 }

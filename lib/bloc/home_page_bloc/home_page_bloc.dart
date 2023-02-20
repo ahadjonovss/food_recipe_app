@@ -53,7 +53,9 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       url.write(i);
     }
     nutrients.clear();
-
-
+    emit(GettingMealsInProgressState());
+    await Future.delayed(Duration(seconds: 2));
+    MyResponse foods = await getIt<ApiService>().getSelectedFoods(url.toString());
+    emit(GettingMealsInSuccessState(foods: foods.data!.hints));
   }
 }
