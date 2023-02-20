@@ -19,6 +19,7 @@ class _NutritionItemState extends State<NutritionItem> {
     return BlocListener<HomePageBloc,HomePageState>(
       listener: (context, state) {
         if(state is CollectAllSelectedState){
+          amount=0;
           context.read<HomePageBloc>().add(AddNutrientEvent(nutrient: "&nutrients%5B${widget.title}%5D=$amount"));
         }
       },

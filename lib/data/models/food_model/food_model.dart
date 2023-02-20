@@ -15,7 +15,7 @@ class FoodModel {
     text: json["text"],
     parsed: List<dynamic>.from(json["parsed"].map((x) => x)),
     hints: List<Hint>.from(json["hints"].map((x) => Hint.fromJson(x))),
-    links: Links.fromJson(json["_links"]),
+    links: Links.fromJson(json["_links"]??{}),
   );
 
 
@@ -152,8 +152,8 @@ class Next {
   String href;
 
   factory Next.fromJson(Map<String, dynamic> json) => Next(
-    title: json["title"],
-    href: json["href"],
+    title: json["title"]??"",
+    href: json["href"]??"",
   );
 
 }

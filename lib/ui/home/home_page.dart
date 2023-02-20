@@ -100,6 +100,12 @@ class _HomePageState extends State<HomePage> {
                 builder: (context, state) {
                   var currentBloc = context.read<HomePageBloc>();
                 if(state is GettingMealsInSuccessState){
+                  if(state.foods.isEmpty){
+                    return Center(
+                      child: Text("Nothing found"),
+                    );
+
+                  }
                   return SizedBox(
                     height: 900,
                     child: GridView.builder(
