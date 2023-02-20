@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:food_recipe_app/data/models/api_model/food_category.dart';
 import 'package:food_recipe_app/data/models/api_model/food_health_type_model.dart';
+import 'package:food_recipe_app/data/models/food_detailed/food_detailed.dart';
 import 'package:food_recipe_app/data/models/food_model/food_model.dart';
 import 'package:food_recipe_app/data/models/my_response.dart';
 import 'package:food_recipe_app/service/api_service/api_client.dart';
@@ -40,11 +41,14 @@ class ApiService extends ApiClient {
   }
 
 
-  Future<List> getMealByName(String name) async {
+  Future<List<FoodDetailedModel>> getMealByName(String name) async {
     String url = "www.themealdb.com/api/json/v1/1/search.php?s=$name";
     Response response = await dio.get(url);
     if(response.statusCode==200){
-      
+      List<FoodDetailedModel> foods = response.data.map((e)=>FoodDetailedModel.fromJson(e));
+      return foods;
+    }else{
+      return [];
     }
 
   }
