@@ -1,4 +1,6 @@
-class FoodHealth{
+import 'package:drop_down_list/model/selected_list_item.dart';
+
+class FoodHealth {
   static const alcoholFree = "alcohol-free";
   static const celeryFree = "celery-free";
   static const crustaceanFree = "crustacean-free";
@@ -31,4 +33,46 @@ class FoodHealth{
   static const vegetarian = "vegetarian";
   static const wheatFree = "wheat-free";
 
+  static List<String> list = [
+    "alcohol-free",
+    "celery-free",
+    "crustacean-free",
+    "dairy-free",
+    "egg-free",
+    "fish-free",
+    "fodmap-free",
+    "gluten-free",
+    "immuno-supportive",
+    "keto-friendly",
+    "kidney-friendly",
+    "kosher",
+    "low-fat-abs",
+    "low-potassium",
+    "low-sugar",
+    "lupine-free",
+    "mustard-free",
+    "no-oil-added",
+    "paleo",
+    "peanut-free",
+    "pescatarian",
+    "pork-free",
+    "red-meat-free",
+    "sesame-free",
+    "shellfish-free",
+    "soy-free",
+    "sugar-conscious",
+    "tree-nut-free",
+    "vegan",
+    "vegetarian",
+    "wheat-free",
+  ];
+
+
+  static List<SelectedListItem>getSelectedItems(){
+    List<SelectedListItem> selecteds = [];
+    for(var i in list){
+      selecteds.add(SelectedListItem(name: i));
+    }
+    return selecteds;
+  }
 }

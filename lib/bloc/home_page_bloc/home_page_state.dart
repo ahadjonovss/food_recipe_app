@@ -27,3 +27,5 @@ class SearchingFoodInSuccess extends HomePageState{
 
   SearchingFoodInSuccess({required this.foods});
 }
+
+class CollectAllSelectedState extends HomePageState{}

@@ -43,6 +43,8 @@ dependencies:
   shimmer: ^2.0.0
   cached_network_image: ^3.2.3
   lottie: ^2.2.0
+  drop_down_list: ^0.0.4
+  zoom_tap_animation: ^1.1.0
 
 dev_dependencies:
   flutter_test:

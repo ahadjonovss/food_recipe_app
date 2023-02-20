@@ -6,6 +6,7 @@ import 'package:food_recipe_app/service/api_service/api_service.dart';
 import 'package:food_recipe_app/ui/food_info/food_info_page.dart';
 import 'package:food_recipe_app/ui/home/widgets/food_item.dart';
 import 'package:food_recipe_app/ui/home/widgets/foods_shimmer.dart';
+import 'package:food_recipe_app/ui/search/search_page.dart';
 import 'package:food_recipe_app/utils/get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:textfield_search/textfield_search.dart';
@@ -63,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                         scrollbarDecoration: ScrollbarDecoration(
                             controller: ScrollController(),
                             theme: ScrollbarThemeData(
-                                radius: Radius.circular(30.0),
+                                radius: const Radius.circular(30.0),
                                 thickness: MaterialStateProperty.all(20.0),
                                 trackColor: MaterialStateProperty.all(Colors.red))),
                         future: () {
@@ -72,7 +73,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      context.read<HomePageBloc>().add(SearchMealsEvent(name: controller.text));
+                      if(controller.text.isEmpty){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage(),));
+                      }else{
+                        context.read<HomePageBloc>().add(SearchMealsEvent(name: controller.text));
+                      }
                     },
                     child: Container(
                       padding: const EdgeInsets.all(8),

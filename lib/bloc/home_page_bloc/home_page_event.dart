@@ -12,3 +12,12 @@ class SearchMealsEvent extends HomePageEvent{
 
   SearchMealsEvent({required this.name});
 }
+
+
+class AddNutrientEvent extends HomePageEvent{
+  String nutrient;
+
+  AddNutrientEvent({required this.nutrient});
+}
+
+class SearchBySelectedEvent extends HomePageEvent{}
