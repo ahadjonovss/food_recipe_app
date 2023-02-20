@@ -41,15 +41,21 @@ class ApiService extends ApiClient {
   }
 
 
-  Future<List<FoodDetailedModel>> getMealByName(String name) async {
-    String url = "www.themealdb.com/api/json/v1/1/search.php?s=$name";
-    Response response = await dio.get(url);
-    if(response.statusCode==200){
-      List<FoodDetailedModel> foods = response.data.map((e)=>FoodDetailedModel.fromJson(e));
-      return foods;
-    }else{
-      return [];
+  Future<List> getMealByName(String name) async {
+    try{
+      String url = "www.themealdb.com/api/json/v1/1/search.php?s=$name";
+      Response response = await dio.get(url);
+      if(response.statusCode==200){
+        List<FoodDetailedModel> foods = response.data.map((e)=>FoodDetailedModel.fromJson(e));
+        return foods;
+      }else{
+        return [];
+      }
+    }catch(e){
+      return [e.toString()];
+
     }
+
 
   }
 }

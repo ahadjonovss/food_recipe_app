@@ -31,7 +31,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
 
   searchMeal(SearchMealsEvent event, emit) async {
     emit(GettingMealsInProgressState());
-    List<FoodDetailedModel> foods = await getIt<ApiService>().getMealByName(event.name);
-    emit(SearchingFoodInSuccess(foods: foods));
+    List foods = await getIt<ApiService>().getMealByName(event.name);
+    print(foods);
+    // emit(SearchingFoodInSuccess(foods: foods));
   }
 }
