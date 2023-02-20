@@ -344,6 +344,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
+  textfield_search:
+    dependency: "direct main"
+    description:
+      name: textfield_search
+      sha256: "6f2cc9c140f398ddcebe3f853cf4528a7c3951c4f9d221e2be4968cbe560e496"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.0"
   typed_data:
     dependency: transitive
     description:

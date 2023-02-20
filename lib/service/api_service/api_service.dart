@@ -25,4 +25,17 @@ class ApiService extends ApiClient {
     }
     return myResponse;
   }
+
+
+  Future<List> search(String word) async {
+    print("Zapros ketdi");
+    String url = "https://api.edamam.com/auto-complete?app_id=62378f1f&app_key=5b15f03cad54329a05915d514a1aaed9&q=$word";
+    Response response = await dio.get(url);
+    print("DATA KEGAAAAAN");
+    if(response.statusCode==200){
+      return response.data;
+    }else{
+      return [];
+    }
+  }
 }

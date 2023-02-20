@@ -14,7 +14,7 @@ class InfoItem extends StatelessWidget {
         Text("$title:",style: GoogleFonts.getFont("IBM Plex Serif",fontWeight: FontWeight.w700,fontSize: 16)),
         SizedBox(
             width: 200,
-            child: Text(info,style: GoogleFonts.getFont("IBM Plex Serif",fontWeight: FontWeight.w700,fontSize: 16),))
+            child: Text(info,style: GoogleFonts.getFont("IBM Plex Serif",fontWeight: FontWeight.w200,fontSize: 16),))
 
       ],
     );

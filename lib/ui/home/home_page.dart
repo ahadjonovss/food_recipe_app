@@ -2,10 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipe_app/bloc/home_page_bloc/home_page_bloc.dart';
+import 'package:food_recipe_app/service/api_service/api_service.dart';
 import 'package:food_recipe_app/ui/food_info/food_info_page.dart';
 import 'package:food_recipe_app/ui/home/widgets/food_item.dart';
 import 'package:food_recipe_app/utils/get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:textfield_search/textfield_search.dart';
 
 class HomePage extends StatefulWidget {
    HomePage({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   ScrollController scrollController = ScrollController();
+  TextEditingController controller =  TextEditingController();
 
    void initState() {
      scrollController.addListener(_scrollListener);
@@ -26,9 +29,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Page"),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: Image.asset("assets/logo.png",width: 240,),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Column(
@@ -46,11 +53,24 @@ class _HomePageState extends State<HomePage> {
                             bottomLeft: Radius.circular(8),
                             topLeft: Radius.circular(8)),
                         color: Colors.grey.withOpacity(0.2)),
-                    child: const TextField(
-                      decoration: InputDecoration(border: InputBorder.none),
-                    ),
+                    child:  TextFieldSearch(
+                        label: '',
+                        decoration: const InputDecoration(
+                          border: InputBorder.none
+                        ),
+                        controller: controller,
+                        scrollbarDecoration: ScrollbarDecoration(
+                            controller: ScrollController(),
+                            theme: ScrollbarThemeData(
+                                radius: Radius.circular(30.0),
+                                thickness: MaterialStateProperty.all(20.0),
+                                trackColor: MaterialStateProperty.all(Colors.red))),
+                        future: () {
+                          return ApiService().search(controller.text);
+                        }),
                   ),
                   Container(
+                    padding: const EdgeInsets.all(8),
                     height: 48,
                     width: 80,
                     decoration: BoxDecoration(
@@ -58,10 +78,13 @@ class _HomePageState extends State<HomePage> {
                             bottomRight: Radius.circular(8),
                             topRight: Radius.circular(8)),
                         color: Colors.grey.withOpacity(0.3)),
+                    child: Image.asset('assets/find.png',),
                   ),
                 ],
               ),
-              Text("Meals", style: GoogleFonts.lato(fontSize: 32)),
+              const SizedBox(height: 12,),
+              Text("Meals ⭐", style: GoogleFonts.lato(fontSize: 32)),
+              const SizedBox(height: 12,),
               BlocBuilder<HomePageBloc,HomePageState>(
                 builder: (context, state) {
                   var currentBloc = context.read<HomePageBloc>();
