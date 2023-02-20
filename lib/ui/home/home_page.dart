@@ -69,16 +69,21 @@ class _HomePageState extends State<HomePage> {
                           return ApiService().search(controller.text);
                         }),
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    height: 48,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            bottomRight: Radius.circular(8),
-                            topRight: Radius.circular(8)),
-                        color: Colors.grey.withOpacity(0.3)),
-                    child: Image.asset('assets/find.png',),
+                  InkWell(
+                    onTap: () {
+                      context.read<HomePageBloc>().add(SearchMealsEvent(name: controller.text));
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      height: 48,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              bottomRight: Radius.circular(8),
+                              topRight: Radius.circular(8)),
+                          color: Colors.grey.withOpacity(0.3)),
+                      child: Image.asset('assets/find.png',),
+                    ),
                   ),
                 ],
               ),

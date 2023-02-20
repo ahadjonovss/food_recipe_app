@@ -20,3 +20,10 @@ class GettingMealsInFailuryState extends HomePageState{
   String status;
   GettingMealsInFailuryState({required this.status});
 }
+
+
+class SearchingFoodInSuccess extends HomePageState{
+  List<FoodDetailedModel> foods;
+
+  SearchingFoodInSuccess({required this.foods});
+}
