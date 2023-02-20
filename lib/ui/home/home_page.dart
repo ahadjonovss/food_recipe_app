@@ -5,6 +5,7 @@ import 'package:food_recipe_app/bloc/home_page_bloc/home_page_bloc.dart';
 import 'package:food_recipe_app/service/api_service/api_service.dart';
 import 'package:food_recipe_app/ui/food_info/food_info_page.dart';
 import 'package:food_recipe_app/ui/home/widgets/food_item.dart';
+import 'package:food_recipe_app/ui/home/widgets/foods_shimmer.dart';
 import 'package:food_recipe_app/utils/get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:textfield_search/textfield_search.dart';
@@ -111,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                   );
                 }
                 else if(state is GettingMealsInProgressState){
-                  return const  CircularProgressIndicator();
+                  return FoodsShimmer();
                 }
                 else if(state is GettingMealsInFailuryState){
                   return Text(state.status);

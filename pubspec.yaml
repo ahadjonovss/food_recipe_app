@@ -40,6 +40,9 @@ dependencies:
   flutter_bloc: ^8.1.2
   get_it: ^7.2.0
   textfield_search: ^0.10.0
+  shimmer: ^2.0.0
+  cached_network_image: ^3.2.3
+  lottie: ^2.2.0
 
 dev_dependencies:
   flutter_test:
