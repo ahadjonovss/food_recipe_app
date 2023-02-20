@@ -38,4 +38,14 @@ class ApiService extends ApiClient {
       return [];
     }
   }
+
+
+  Future<List> getMealByName(String name) async {
+    String url = "www.themealdb.com/api/json/v1/1/search.php?s=$name";
+    Response response = await dio.get(url);
+    if(response.statusCode==200){
+      
+    }
+
+  }
 }
