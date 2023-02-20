@@ -24,15 +24,15 @@ class FoodModel {
 class Hint {
   Hint({
     required this.food,
-    // required this.measures,
+    required this.measures,
   });
 
   Food food;
-  // List<Measure> measures;
+  List measures;
 
   factory Hint.fromJson(Map<String, dynamic> json) => Hint(
     food: Food.fromJson(json["food"]??{}),
-    // measures: List<Measure>.from(json["measures"]??[].map((x) => Measure.fromJson(x))),
+    measures: json["measures"]??[].map((x) => Measure.fromJson(x)),
   );
 
 }
