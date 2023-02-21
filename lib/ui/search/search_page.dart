@@ -63,85 +63,72 @@ class SearchPage extends StatelessWidget {
           }
 
         },
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: 400,
-          child: Stack(
-            children: [
-              Container(
-                height: 250,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/foods.png'),
-                    fit: BoxFit.cover
-                  )
-                ),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: 400,
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              width: 400,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(52),topRight: Radius.circular(52)),
+                color: Colors.white
               ),
-              Positioned(
-                top: 210,
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    height: 680,
-                    width: 400,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(52),topRight: Radius.circular(52)),
-                      color: Colors.white
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 24,),
-                        Text("Choose yourself!",style: GoogleFonts.akayaTelivigala(fontSize: 28),),
-                        const SizedBox(height: 16,),
-                        TextButton(onPressed: () {
-                          onTextFieldTap(context,FoodHealth.getSelectedItems(),"&health=");
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 24,),
+                  Text("Choose yourself!",style: GoogleFonts.akayaTelivigala(fontSize: 28),),
+                  const SizedBox(height: 16,),
+                  TextButton(onPressed: () {
+                    onTextFieldTap(context,FoodHealth.getSelectedItems(),"&health=");
 
-                        }, child: Text("Select healthy",style: GoogleFonts.alatsi(fontSize: 18),)),
-                        const SizedBox(height: 16,),
-                        TextButton(onPressed: () {
-                          onTextFieldTap(context,FoodCategory.getSelectedItems(),"&category=");
+                  }, child: Text("Select healthy",style: GoogleFonts.alatsi(fontSize: 18),)),
+                  const SizedBox(height: 16,),
+                  TextButton(onPressed: () {
+                    onTextFieldTap(context,FoodCategory.getSelectedItems(),"&category=");
 
-                        }, child: Text("Select category",style: GoogleFonts.alatsi(fontSize: 18),)),
-                        const SizedBox(height: 30,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            NutritionItem(title: "NIA"),
-                            NutritionItem(title: "PROCNT"),
-                            NutritionItem(title: "SUGAR"),
-                          ],
+                  }, child: Text("Select category",style: GoogleFonts.alatsi(fontSize: 18),)),
+                  const SizedBox(height: 30,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      NutritionItem(title: "NIA"),
+                      NutritionItem(title: "PROCNT"),
+                      NutritionItem(title: "SUGAR"),
+                    ],
+                  ),
+                  const SizedBox(height: 30,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      NutritionItem(title: "FIBTG"),
+                      NutritionItem(title: "FOLFD"),
+                      NutritionItem(title: "NA"),
+                    ],
+                  ),
+                  const SizedBox(height: 60,),
+                  ZoomTapAnimation(
+                    onTap: () {
+                      context.read<HomePageBloc>().add(SearchBySelectedEvent());
+                    },
+                    child: Center(
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 60,
+                        width: 340,
+                        decoration: BoxDecoration(
+                          color: Colors.redAccent,
+                          borderRadius: BorderRadius.circular(12)
                         ),
-                        const SizedBox(height: 30,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            NutritionItem(title: "FIBTG"),
-                            NutritionItem(title: "FOLFD"),
-                            NutritionItem(title: "NA"),
-                          ],
-                        ),
-                        const SizedBox(height: 60,),
-                        ZoomTapAnimation(
-                          onTap: () {
-                            context.read<HomePageBloc>().add(SearchBySelectedEvent());
-                          },
-                          child: Center(
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 60,
-                              width: 340,
-                              decoration: BoxDecoration(
-                                color: Colors.redAccent,
-                                borderRadius: BorderRadius.circular(12)
-                              ),
-                              child:  Text("Search!",style: GoogleFonts.akayaTelivigala(fontSize: 28,color: Colors.white),),
-                            ),
-                          ),
-                        )
-                      ],
+                        child:  Text("Search!",style: GoogleFonts.akayaTelivigala(fontSize: 28,color: Colors.white),),
+                      ),
                     ),
-                  ))
-            ],
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),

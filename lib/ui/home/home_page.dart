@@ -72,6 +72,9 @@ class _HomePageState extends State<HomePage> {
                         }),
                   ),
                   InkWell(
+                    onLongPress: () {
+                      showModalBottomSheet(context: context, builder: (context) => SearchPage(),);
+                    },
                     onTap: () {
                       if(controller.text.isEmpty){
                         Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage(),));
